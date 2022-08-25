@@ -21,11 +21,21 @@ export class TodosService {
         return this.repo.findOneBy({id: parseInt(id)});
     }
 
-    async update(id: string){
+    async update(id: string,body: any){
         const todo = await this.repo.findOneBy({id: parseInt(id)});
         if(!todo){
             throw new NotFoundException('Todo not found');
         }
-        return this.repo.save({...todo,isCompleted: true});
+        if(body.todo){
+            todo.todo = body.todo;
+        }
+        if(body.description){
+            todo.description = body.description;
+        }
+        if(body.isCompleted){
+            todo.isCompleted = body.isCompleted;
+        }
+
+        return this.repo.save({...todo});
     }
 }

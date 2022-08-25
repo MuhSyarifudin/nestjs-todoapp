@@ -8,11 +8,12 @@ import { Todos } from './todos/entity/todos.entity';
 @Module({
   imports: [
     TypeOrmModule.forRoot({
-      type: 'postgres',
-      port: 5432,
-      username: 'postgres',
-      password: 'root',
-      database: 'todo_app',
+      type: 'mysql',
+      host: 'localhost',
+      port: 3306,
+      username: 'root',
+      password: '',
+      database: 'test',
       entities: [Todos],
       synchronize: true,
     }),TodosModule ],
